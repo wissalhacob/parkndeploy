@@ -35,23 +35,28 @@ jobs:
 
 
   backend:
+    name: Build Backend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET SDK 9.0.x
-        uses: actions/setup-dotnet@v5
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "9.0.x"
+          dotnet-version: '9.0.x'
 
-      - name: Publish the app (Release)
+      - name: Restore dependencies
+        run: dotnet restore
         working-directory: ./backend
-        run: dotnet publish -c Release --propertyublishDir=publish
+
+      - name: Publish .NET app
+        run: dotnet publish -c Release -o ./publish
+        working-directory: ./backend/ParkNDeploy.Api
 
       - name: Upload backend artifact
         uses: actions/upload-artifact@v4
         with:
-          name: backend-artifact
-          path: backend/ParkNDeploy.Api/publish
-          retention-days: 5
+          name: backend-publish
+          path: ./backend/ParkNDeploy.Api/publish
+          retention-days: 1
