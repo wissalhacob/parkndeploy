@@ -2,8 +2,9 @@ name: CI/CD Release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
+
 env:
   AZURE_RG_NAME: rg-${{ vars.PROJECT_NAME }}-${{ vars.AZURE_RESOURCE_IDENTIFIER }}
 
