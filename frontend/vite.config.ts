@@ -20,11 +20,12 @@ export default defineConfig({
     },
   },  
   plugins: [react()],
-  //define: {
-   // APP_VERSION: JSON.stringify(process.env.npm_package_version)
-    
-  //}
+  
   define: {
-    'import.meta.env.VITE_APP_VERSION': JSON.stringify(process.env.VITE_APP_VERSION)
+    APP_VERSION: JSON.stringify(process.env.npm_package_version)
+    
   }
+  //define: {
+   // 'import.meta.env.VITE_APP_VERSION': JSON.stringify(process.env.VITE_APP_VERSION)
+ // }
 })
