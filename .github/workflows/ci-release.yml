@@ -47,11 +47,11 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Publish .NET app
-        run: dotnet publish -c Release --property:PublishDir=publish
+        run: dotnet publish ./ParkNDeploy.Api.csproj -c Release -o publish
         working-directory: ./backend
 
       - name: Verify publish folder
-        run: ls -la ./backend/publish   # Vérification que le dossier existe
+        run: ls -la ./backend/publish
 
       - name: Upload backend artifact
         uses: actions/upload-artifact@v4
